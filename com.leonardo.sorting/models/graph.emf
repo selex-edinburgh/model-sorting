@@ -1,0 +1,25 @@
+@namespace(
+	uri="http://www.leonardo.com/graph",
+	prefix="graph")
+package graph;
+
+
+class Graph {
+	val Node[*] nodes;
+	val Edge[*] edges; 
+}
+
+class Node {
+	attr String name;
+	attr int value;
+	attr String group;
+	ref Edge[*] edges;
+}
+
+class Edge {
+	attr String name;
+	attr int value;
+	ref Node from;
+	ref Node to;
+}  
+

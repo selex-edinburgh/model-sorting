@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="ASCII"?>
+<graph:Graph xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:graph="http://www.leonardo.com/graph" xmi:id="_aQvNoC-jEe6rLIaO3NoixQ">
+  <nodes xmi:id="_UWTIIC-mEe6rLIaO3NoixQ" name="C20" value="11" group="C"/>
+  <nodes xmi:id="__lTlcC-lEe6rLIaO3NoixQ" name="A1" value="100" group="A"/>
+  <nodes xmi:id="__lTlcS-lEe6rLIaO3NoixQ" name="B3" value="10" group="B"/>
+  <nodes xmi:id="__lTlci-lEe6rLIaO3NoixQ" name="C200" value="6" group="C"/>
+  <nodes xmi:id="_Kl-dkC-mEe6rLIaO3NoixQ" name="A3" value="5" group="A"/>
+  <nodes xmi:id="_KL5wsC-mEe6rLIaO3NoixQ" name="A2" value="4" group="A"/>
+  <nodes xmi:id="_TPXVQC-mEe6rLIaO3NoixQ" name="B10" value="3" group="B"/>
+  <nodes xmi:id="_T_P6EC-mEe6rLIaO3NoixQ" name="C2" value="2" group="C"/>
+  <nodes xmi:id="_TbFdEC-mEe6rLIaO3NoixQ" name="b1" value="1" group="B"/>
+</graph:Graph>

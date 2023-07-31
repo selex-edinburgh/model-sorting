@@ -1,0 +1,35 @@
+//var resource = M.getResource();
+var nodes = Graph.all.first.nodes.asOrderedSet;
+
+"Original:".println;
+for (node in nodes){
+	Sequence{node.name, node.value , node.group}.concat(", ").println;
+}
+
+"\nSort By Name:".println;
+nodes = nodes.sortBy(n | n.name);
+for (node in nodes){
+	Sequence{node.name, node.value , node.group}.concat(", ").println;
+}
+
+"\nSort By Value:".println;
+nodes = nodes.sortBy(n | n.value);
+for (node in nodes){
+	Sequence{node.name, node.value , node.group}.concat(", ").println;
+}
+
+"\nSort By Group, Name:".println;
+nodes = nodes.sortBy(n | n.group + "-" + n.name);
+for (node in nodes){
+	Sequence{node.name, node.value , node.group}.concat(", ").println;
+}
+
+// However, for this one, values are treated as strings not as numbers
+// So, we should perform multi level sorting based on the order of the groups
+// and add the elements one by one to an empty OrderedSet/Sequence
+"\nSort By Group, Value:".println;
+nodes = nodes.sortBy(n | n.group + "-" + n.value);
+for (node in nodes){
+	Sequence{node.name, node.value , node.group}.concat(", ").println;
+}
+
