@@ -26,10 +26,40 @@ for (node in nodes){
 
 // However, for this one, values are treated as strings not as numbers
 "\nSort By Group, Value:".println;
-nodes = nodes.sortBy(n | n.group + "-" + n.value);
+nodes = nodes.sortBy(n |  n.group + "-" + n.value);
 for (node in nodes){
 	Sequence{node.name, node.value , node.group}.concat(", ").println;
+}
 // So, we should perform multi level sorting based on the order of the groups
 // and add the elements one by one to an empty OrderedSet/Sequence.
 // I'm still working on the operation for that functionality.
+
+
+"\nMultilevel Sort By Group, Value:".println;
+nodes = nodes.multilevelSortBy(Sequence{"group", "value"});
+for (node in nodes){
+	Sequence{node.name, node.value , node.group}.concat(", ").println;
+}
+
+operation Collection multilevelSortBy(featuresNames : Sequence(String)): Collection {
+	if (featuresNames.size == 0) {
+		return self; 
+	}
+	var sequence = Sequence{};
+	var featureName = featuresNames.get(0);
+	featuresNames.removeAt(0);
+	var sortedSelf = self.sortBy(n | n.eGet(n.eClass.getEStructuralFeature(featureName)));
+	if (featuresNames.size > 0) {
+		var members = sortedSelf.collect(n | n.eGet(n.eClass.getEStructuralFeature(featureName))).asOrderedSet;
+		for (member in members){
+			var sublist = sortedSelf.select(n | n.eGet(n.eClass.getEStructuralFeature(featureName)) == member);
+			var clonedFeatureNames = featuresNames.clone();
+			var sortedSublist = sublist.multilevelSortBy(clonedFeatureNames);
+			sequence.addAll(sortedSublist);
+		}
+	} else {
+		sequence.addAll(sortedSelf);
+	}
+	return sequence;
+}
 
