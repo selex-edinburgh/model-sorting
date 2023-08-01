@@ -2,23 +2,27 @@
 var nodes = Graph.all.first.nodes.asOrderedSet;
 
 "Original:".println;
+"Name, Value, Group".println;
 for (node in nodes){
 	Sequence{node.name, node.value , node.group}.concat(", ").println;
 }
 
 "\nSort By Name:".println;
+"Name, Value, Group".println;
 nodes = nodes.sortBy(n | n.name);
 for (node in nodes){
 	Sequence{node.name, node.value , node.group}.concat(", ").println;
 }
 
 "\nSort By Value:".println;
+"Name, Value, Group".println;
 nodes = nodes.sortBy(n | n.value);
 for (node in nodes){
 	Sequence{node.name, node.value , node.group}.concat(", ").println;
 }
 
 "\nSort By Group, Name:".println;
+"Name, Value, Group".println;
 nodes = nodes.sortBy(n | n.group + "-" + n.name);
 for (node in nodes){
 	Sequence{node.name, node.value , node.group}.concat(", ").println;
@@ -26,17 +30,24 @@ for (node in nodes){
 
 // However, for this one, values are treated as strings not as numbers
 "\nSort By Group, Value:".println;
+"Name, Value, Group".println;
 nodes = nodes.sortBy(n |  n.group + "-" + n.value);
 for (node in nodes){
 	Sequence{node.name, node.value , node.group}.concat(", ").println;
 }
 // So, we should perform multi level sorting based on the order of the groups
 // and add the elements one by one to an empty OrderedSet/Sequence.
-// I'm still working on the operation for that functionality.
 
+"\nMultilevel Sort By Group, Value, Name:".println;
+"Name, Value, Group".println;
+nodes = nodes.multilevelSortBy(Sequence{"group", "value", "name"});
+for (node in nodes){
+	Sequence{node.name, node.value , node.group}.concat(", ").println;
+}
 
-"\nMultilevel Sort By Group, Value:".println;
-nodes = nodes.multilevelSortBy(Sequence{"group", "value"});
+"\nMultilevel Sort By Group, Name, Value:".println;
+"Name, Value, Group".println;
+nodes = nodes.multilevelSortBy(Sequence{"group", "name", "value"});
 for (node in nodes){
 	Sequence{node.name, node.value , node.group}.concat(", ").println;
 }
