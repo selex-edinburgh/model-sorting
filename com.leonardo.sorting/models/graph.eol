@@ -40,19 +40,19 @@ for (node in nodes){
 
 "\nMultilevel Sort By Group, Value, Name:".println;
 "Name, Value, Group".println;
-nodes = nodes.multilevelSortBy(Sequence{"group", "value", "name"});
+nodes = nodes.sortBy(Sequence{"group", "value", "name"});
 for (node in nodes){
 	Sequence{node.name, node.value , node.group}.concat(", ").println;
 }
 
 "\nMultilevel Sort By Group, Name, Value:".println;
 "Name, Value, Group".println;
-nodes = nodes.multilevelSortBy(Sequence{"group", "name", "value"});
+nodes = nodes.sortBy(Sequence{"group", "name", "value"});
 for (node in nodes){
 	Sequence{node.name, node.value , node.group}.concat(", ").println;
 }
 
-operation Collection multilevelSortBy(featuresNames : Sequence(String)): Collection {
+operation Collection sortBy(featuresNames : Sequence(String)): Collection {
 	if (featuresNames.size == 0) {
 		return self; 
 	}
@@ -69,11 +69,11 @@ operation Collection multilevelSortBy(featuresNames : Sequence(String)): Collect
 			var sublist = sortedSelf.select(n | n.eGet(n.eClass.getEStructuralFeature(featureName)) == member);
 			var clonedFeatureNames = featuresNames.clone();
 			// we do a recursive call here to sort the sublist
-			var sortedSublist = sublist.multilevelSortBy(clonedFeatureNames);
+			var sortedSublist = sublist.sortBy(clonedFeatureNames);
 			sequence.addAll(sortedSublist);
 		}
 	} else {
-		sequence.addAll(sortedSelf);
+		return sortedSelf;
 	}
 	return sequence;
 }
