@@ -61,10 +61,14 @@ operation Collection multilevelSortBy(featuresNames : Sequence(String)): Collect
 	featuresNames.removeAt(0);
 	var sortedSelf = self.sortBy(n | n.eGet(n.eClass.getEStructuralFeature(featureName)));
 	if (featuresNames.size > 0) {
+		// we collect the unique members of the feature
 		var members = sortedSelf.collect(n | n.eGet(n.eClass.getEStructuralFeature(featureName))).asOrderedSet;
+		// iterate through all the members
 		for (member in members){
+			// create a sublist by filtering the collection for each member
 			var sublist = sortedSelf.select(n | n.eGet(n.eClass.getEStructuralFeature(featureName)) == member);
 			var clonedFeatureNames = featuresNames.clone();
+			// we do a recursive call here to sort the sublist
 			var sortedSublist = sublist.multilevelSortBy(clonedFeatureNames);
 			sequence.addAll(sortedSublist);
 		}
